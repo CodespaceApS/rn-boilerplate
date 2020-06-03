@@ -5,14 +5,13 @@ import {Screen, View,Text,Image, Touch, Button, Card, Lines, Title } from '../..
 
 export default ({navigation}) => {
   const [auth, set] = Context.useAuth()
+  const form = useForm()
 
 
   return (
   <Screen modal flex={1} fill pl pt pr>
-    <Title mt="100" >Login </Title>
-    <Input mt type="big" label="Indtast din e-mail" />
-    <Input mt type="big" label="Indtast dit password" />
-    <Button mt onPress={_ => set({token: 'sdsda', name: 'simon'})} text="Login" />
+    <Title mt >Enter name </Title>
+    <Input inputProps={{onSubmitEditing: _ => navigation.goBack(), autoFocus: true}} ref={form.add('name')} mt type="big"  label="Enter your name" />
   </Screen>
   )
 }

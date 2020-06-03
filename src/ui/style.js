@@ -4,7 +4,11 @@ import initInline from 'rn-inline-style'
 import { BlurView } from 'expo-blur'
 const inline = initInline({
   br: x => ['borderRadius', x],
-  row: x => ['flexDirection', 'row']
+  row: x => ['flexDirection', 'row'],
+  endCenter: x => [
+    ['justifyContent', 'flex-end'],
+    ['alignItems', 'center']
+  ],
 })
 
 export const colors = {
@@ -13,6 +17,10 @@ export const colors = {
   bg: '#F5F5F2',
   line: '#E1E0E3'
 }
+
+export const Switch = ({ ...props }) => (
+  <RN.Switch {...inline(props)} />
+)
 
 export const Blur = ({ children, ...props }) => (
   <BlurView {...(inline(props))} >
@@ -32,11 +40,13 @@ export const Image = ({ children, ...props }) => (
   </RN.Image>
 )
 
-export const Input = ({ children, ...props }) => (
-  <RN.TextInput {...(inline(props))} >
-    {children}
-  </RN.TextInput>
-)
+export const Input = React.forwardRef(({ children, ...props }, ref) => {
+  return (
+    <RN.TextInput ref={ref} {...(inline(props))} >
+      {children}
+    </RN.TextInput>
+  )
+})
 
 export const Text = ({ children, ...props }) => (
   <RN.Text {...(inline(props))} >

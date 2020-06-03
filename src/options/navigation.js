@@ -1,7 +1,6 @@
 import { createStackNavigator, TransitionPresets, TransitionSpecs, CardStyleInterpolators   } from '@react-navigation/stack'
 import {colors} from '../ui'
 
-
 export const headerStyle = {
   headerTitleAllowFontScaling: false,
   headerBackAllowFontScaling: false,
@@ -20,10 +19,18 @@ export const headerStyle = {
   headerBackTitleVisible: false,
 }
 
+export const screenStack = {
+  screenOptions: {
+    gestureEnabled: true,
+    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS ,
+  }
+}
+
 export const modalStack = {
   mode: 'modal',
   headerMode: 'none',
   screenOptions: {
+    gestureEnabled: true,
     cardStyle: { backgroundColor: 'transparent' },
     cardOverlayEnabled: true,
     ...TransitionPresets.ModalPresentationIOS,
@@ -33,6 +40,7 @@ export const modalStack = {
 export const mobilePayTab = {
   inactiveBackgroundColor: 'white',
   allowFontScaling: false,
+  keyboardHidesTabBar: true,
   activeTintColor: colors.main,
   activeBackgroundColor: 'white',
   tabStyle: {

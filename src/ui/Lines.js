@@ -1,6 +1,7 @@
 import React from 'react'
-import { Arrow } from './icons'
-import { colors, View, Touch, Text, Image } from './style'
+import { Arrow, SmallGreyArrow } from './icons'
+import { colors, View, Touch, Text, Switch, Input } from './style'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 export const Big = ({onPress}) => (
   <Touch onPress={onPress}>
@@ -24,6 +25,56 @@ export const Big = ({onPress}) => (
     <View mt={10} ml={70} h={1} bg={colors.line}></View>
   </View>
   </Touch>
+)
+
+export const SimpleLineWrapper = ({children}) => (
+  <View bg="white" >
+    <View h={1} bg={colors.line} />
+    {children}
+    <View h={1} bg={colors.line} />
+  </View>
+)
+
+export const SimpleLineInput = React.forwardRef(({label, inputProps, noLine = false}, ref) => (
+  <>
+  <View h={44} row startCenter pl>
+    <Text color={colors.dark} >{label}</Text>
+    <View endCenter ml mr row flex={1}>
+      <Input text="right" flex={1} color={colors.main} {...inputProps} ref={ref} />
+    </View>
+  </View>
+  {noLine ? null : <View ml h={1} bg={colors.line} />}
+  </>
+))
+
+
+export const SimpleLineSwitch = React.forwardRef(({label, inputProps, noLine = false}, ref) => (
+  <>
+  <View h={44} row startCenter pl>
+    <Text color={colors.dark} >{label}</Text>
+    <View endCenter ml mr row flex={1}>
+      <Switch ios_backgroundColor={colors.line} trackColor={{ false: colors.line, true: colors.line }} thumbColor={inputProps.value ? colors.main : '#f4f3f4'} {...inputProps} ref={ref} />
+    </View>
+  </View>
+  {noLine ? null : <View ml h={1} bg={colors.line} />}
+  </>
+))
+
+export const SimpleLineLink = ({label, onPress , value, noLine = false}) => (
+  <>
+  <Touch onPress={onPress}>
+  <View h={44} row startCenter pl>
+    <Text color={colors.dark} >{label}</Text>
+    <View endCenter mr row flex={1}>
+      <Text color={colors.main} >{value}</Text>
+    </View>
+    <View centerCenter mr >
+    <SmallGreyArrow />
+    </View>
+  </View>
+  </Touch>
+  {noLine ? null : <View ml h={1} bg={colors.line} />}
+  </>
 )
 
 export const Menu = ({onPress, title}) => (

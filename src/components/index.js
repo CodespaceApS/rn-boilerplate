@@ -1,6 +1,7 @@
 import Input from './Input'
-import Toggle from './Toggle'
+import Switch from './Switch'
+import Signout from './Signout'
 
 export {
-  Input, Toggle
+  Input, Switch, Signout
 }
